@@ -1,4 +1,4 @@
 biubiubiu-backend/.idea/*
-.pyc
-.pem
-.crx
+*.pyc
+*.pem
+*.crx
