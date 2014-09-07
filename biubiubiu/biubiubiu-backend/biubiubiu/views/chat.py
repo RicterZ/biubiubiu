@@ -16,5 +16,5 @@ class BiuSocketHandler(BaseSocketHandler):
         self.clients.remove(self)
 
     def on_message(self, message):
-        print 'Recv: %s' % message
+        #print 'Recv: %s' % message
         self.send_message({'text': message}, self.session.url)
