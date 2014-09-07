@@ -27,10 +27,13 @@ function BiuBiuBiu() {
     };
 
     this.send_text = function (text) {
-        if (!this.ws || this.ws.readyState != this.ws.OPEN) {
+        if (!this.ws || this.ws.readyState == this.ws.CLOSED || this.ws.readyState == this.ws.CLOSING) {
             this.listener();
         }
-        this.ws.send(text);
+        if (this.ws.readyState == this.ws.OPEN) {
+            console.log(text);
+            this.ws.send(text);
+        }
     };
 
     this.listener = function() {
@@ -41,9 +44,17 @@ function BiuBiuBiu() {
             eval('var data = ' + event.data + ';');
             biu.biu(data.text);
         }
+
+        this.ws.onclose = function () {
+            console.log('reconnect');
+            biu.listener();
+        }
     };
 
     this.close = function () {
+        this.ws.onclose = function (){
+            console.log('close without reconnect')
+        };
         this.ws.close();
     };
 }
