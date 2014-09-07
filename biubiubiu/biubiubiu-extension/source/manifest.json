@@ -7,7 +7,7 @@
 
  "content_scripts": [
     {
-      "matches": ["http://*/*"],
+      "matches": ["http://*/*", "https://*/*"],
       "css": ["biubiubiu.css"],
       "js": ["jquery.min.js", "biubiubiu.js"]
     }
@@ -16,15 +16,15 @@
   "browser_action": {
     //"default_icon": "icon.png",
     "default_popup": "popup.html",
-    "default_title": "Biubiubiu",
-    "web_accessible_resources": ["jquery.min.js"]
+    "default_title": "Biubiubiu"
+    //"web_accessible_resources": ["jquery.min.js"]
   },
 
   "background": {  
-    "scripts": ["background.js"]  
+    "scripts": ["jquery.min.js", "background.js"]
   },
 
   "permissions": [
-    "tabs", "http://*/*"
+    "tabs", "http://*/*", "https://*/*"
   ]
 }

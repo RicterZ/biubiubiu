@@ -7,8 +7,12 @@ function BiuBiuBiu() {
     this.url = 'ws://biu.ricter.me/biubiubiu';
 
     this.init = function () {
-        biu_wrapper = document.createElement('div');
-        biu_wrapper.className = 'biu_wrapper';
+        biu_wrapper = document.getElementById('biu_wrapper');
+        if (!biu_wrapper) {
+            biu_wrapper = document.createElement('div');
+            biu_wrapper.id = 'biu_wrapper';
+        }
+        
         $('body').append(biu_wrapper);
         this.biu_wrapper = $(biu_wrapper);
         this.listener();
@@ -52,6 +56,7 @@ function BiuBiuBiu() {
     };
 
     this.close = function () {
+        if (!this.ws) return;
         this.ws.onclose = function (){
             console.log('close without reconnect')
         };

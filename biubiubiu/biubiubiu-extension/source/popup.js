@@ -1,12 +1,7 @@
 var ctrl_dict = {0: 'close', 1: 'start'},
     status = localStorage.getItem("biu_status");
 
-if (status == "null") {
-    status = 1;
-    start();
-}
 $('#controller').text(ctrl_dict[status==1?0:1]);
-
 
 function send(data, id) {
     chrome.tabs.query({}, function(tabs) {
