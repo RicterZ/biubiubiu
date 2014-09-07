@@ -7,8 +7,6 @@ function BiuBiuBiu() {
     this.url = 'ws://biu.ricter.me/biubiubiu';
 
     this.init = function () {
-        if (self.ws)
-            self.ws.close();
         biu_wrapper = document.createElement('div');
         biu_wrapper.className = 'biu_wrapper';
         $('body').append(biu_wrapper);
@@ -29,11 +27,15 @@ function BiuBiuBiu() {
     };
 
     this.send_text = function (text) {
-        if (this.ws)
-            this.ws.send(text);
+        if (!this.ws || this.ws.readyState != this.ws.OPEN) {
+            this.listener();
+        }
+        this.ws.send(text);
     };
 
     this.listener = function() {
+        if (this.ws != undefined) 
+            if (this.ws.readyState == this.ws.OPEN) return;
         this.ws = new WebSocket(this.url + '?url=' + this.id_url);
         this.ws.onmessage = function (event) {
             eval('var data = ' + event.data + ';');
@@ -42,8 +44,7 @@ function BiuBiuBiu() {
     };
 
     this.close = function () {
-        if (this.ws)
-            this.ws.close();
+        this.ws.close();
     };
 }
 
