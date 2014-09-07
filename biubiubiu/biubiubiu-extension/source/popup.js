@@ -24,17 +24,17 @@ function send(data, id) {
 
 function start() {
     console.log('biu started');
-    send(1);
+    send({"type": ctrl_dict[1]});
     localStorage.setItem("biu_status", 1);
-    $('#controller').text({"type": ctrl_dict[0]});
+    $('#controller').text(ctrl_dict[0]);
 }
 
 
 function close() { 
     console.log('biu closed');
-    send(0);
+    send({"type": ctrl_dict[0]});
     localStorage.setItem("biu_status", 0);
-    $('#controller').text({"type": ctrl_dict[1]});
+    $('#controller').text(ctrl_dict[1]);
 }
 
 

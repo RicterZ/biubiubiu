@@ -4,7 +4,7 @@
 
 function BiuBiuBiu() {
     this.id_url = window.location.host;
-    this.url = 'ws://localhost:8000/biubiubiu';
+    this.url = 'ws://biu.ricter.me/biubiubiu';
 
     this.init = function () {
         if (self.ws)
@@ -52,6 +52,7 @@ biu = new BiuBiuBiu();
 
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
+    console.log(request.type);
     if (request.type == 'start') {
         biu.init();
     } else if (request.type == 'close') {
