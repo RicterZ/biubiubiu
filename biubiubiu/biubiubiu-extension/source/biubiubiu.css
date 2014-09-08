@@ -10,6 +10,7 @@
 }
 
 .biu_text {
+    font-family: Tahoma, Helvetica, "Microsoft Yahei", "微软雅黑", Arial, STHeiti;
 	position: absolute;
 	z-index: 999;
 	pointer-events: none;

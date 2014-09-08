@@ -1,15 +1,48 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Biubiubiu</title>
+    <title>Biubiubiu 网页弹幕</title>
+    <style>
+    	body {
+    		width: 400px;
+    		font-family: Tahoma, Helvetica, "Microsoft Yahei", "微软雅黑", Arial, STHeiti;
+    		background: url(/main-bg.png) repeat;
+
+    	}
+
+    	h1 {
+    		font-weight: 100;
+    	}
+
+    	button {
+    		padding: 5px 30px;
+    		border: none;
+    		background: #008294;
+    		color: #FFF;
+    		cursor: pointer;
+    		-webkit-transition: background 400ms;
+			-moz-transition: background 400ms;
+			transition: background 400ms;
+    	}
+
+    	button:hover {
+    		background: #25B3C7;
+    	}
+
+    	input {
+    		width: 280px;
+    		border: 3px solid #000;
+    		padding: 2px;
+    	}
+    </style>
 </head>
 
 <body>
-    <h1>Biubiubiu</h1>
+    <h1>Biubiubiu 网页弹幕 &gt;w&lt;</h1>
     <button id="controller"></button>
     <hr />
     <input id="biu_text" type="text" value="">
-    <button id="send">send</button>
+    <button id="send">Biu~</button>
 </body>
 <script src="jquery.min.js"></script>
 <script src="popup.js"></script>

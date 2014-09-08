@@ -1,7 +1,8 @@
 var ctrl_dict = {0: 'close', 1: 'start'},
+    button_text = {0: '点窝开始ww', 1: '关闭咱QAQ'}
     status = localStorage.getItem("biu_status");
 
-$('#controller').text(ctrl_dict[status==1?0:1]);
+$('#controller').text(button_text[status==1?0:1]);
 
 function send(data, id) {
     chrome.tabs.query({}, function(tabs) {
@@ -21,7 +22,7 @@ function start() {
     console.log('biu started');
     send({"type": ctrl_dict[1]});
     localStorage.setItem("biu_status", 1);
-    $('#controller').text(ctrl_dict[0]);
+    $('#controller').text(button_text[0]);
 }
 
 
@@ -29,7 +30,7 @@ function close() {
     console.log('biu closed');
     send({"type": ctrl_dict[0]});
     localStorage.setItem("biu_status", 0);
-    $('#controller').text(ctrl_dict[1]);
+    $('#controller').text(button_text[1]);
 }
 
 
