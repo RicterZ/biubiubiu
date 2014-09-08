@@ -1,5 +1,5 @@
 var ctrl_dict = {0: 'close', 1: 'start'},
-    button_text = {0: '点窝开始ww', 1: '关闭咱QAQ'}
+    button_text = {1: '点窝开始ww', 0: '关闭咱QAQ'}
     status = localStorage.getItem("biu_status");
 
 $('#controller').text(button_text[status==1?0:1]);

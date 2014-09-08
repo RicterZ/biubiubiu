@@ -46,7 +46,9 @@ function BiuBiuBiu() {
         _this = this;
 
         this.ws.onmessage = function (event) {
-            _this.biu(JSON.parse(event.data).text);
+            var text = JSON.parse(event.data).text;
+            _this.biu(text);
+            console.log('[biu] Recv: ' + text);
         }
 
         this.ws.onclose = function () {
