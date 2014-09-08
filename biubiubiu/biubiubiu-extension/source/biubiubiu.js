@@ -7,12 +7,10 @@ function BiuBiuBiu() {
     this.url = 'ws://biu.ricter.me/biubiubiu';
 
     this.init = function () {
-        biu_wrapper = document.getElementById('biu_wrapper');
-        if (!biu_wrapper) {
-            biu_wrapper = document.createElement('div');
-            biu_wrapper.id = 'biu_wrapper';
-        }
-        
+        if (document.getElementById('biu_wrapper')) return;
+
+        biu_wrapper = document.createElement('div');
+        biu_wrapper.id = 'biu_wrapper';
         $('body').append(biu_wrapper);
         this.biu_wrapper = $(biu_wrapper);
         this.listener();
@@ -32,10 +30,11 @@ function BiuBiuBiu() {
 
     this.send_text = function (text) {
         if (!this.ws || this.ws.readyState == this.ws.CLOSED || this.ws.readyState == this.ws.CLOSING) {
-            this.listener();
+            console.log(this.ws);
+            this.init();
         }
         if (this.ws.readyState == this.ws.OPEN) {
-            console.log(text);
+            console.log('[biu] Send: ' + text);
             this.ws.send(text);
         }
     };
@@ -44,34 +43,39 @@ function BiuBiuBiu() {
         if (this.ws != undefined) 
             if (this.ws.readyState == this.ws.OPEN) return;
         this.ws = new WebSocket(this.url + '?url=' + this.id_url);
+        _this = this;
+
         this.ws.onmessage = function (event) {
-            eval('var data = ' + event.data + ';');
-            biu.biu(data.text);
+            _this.biu(JSON.parse(event.data).text);
         }
 
         this.ws.onclose = function () {
-            console.log('reconnect');
-            biu.listener();
+            console.log('[biu] Reconnecting ...');
+            _this.listener();
         }
+        console.log('[biu] Connected successfully');
     };
 
     this.close = function () {
         if (!this.ws) return;
         this.ws.onclose = function (){
-            console.log('close without reconnect')
+            console.log('[biu] Closed without reconnection')
         };
         this.ws.close();
     };
 }
 
 
-biu = new BiuBiuBiu();
-
 
 chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
-    console.log(request.type);
+    console.log('[biu] Command: ' + request.type);
     if (request.type == 'start') {
-        biu.init();
+        if (!window.biu) {
+            biu = new BiuBiuBiu();
+            biu.init();
+        } else {
+            biu.init();
+        }
     } else if (request.type == 'close') {
         biu.close()
     } else if (request.type == 'send') {
