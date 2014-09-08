@@ -30,8 +30,8 @@ function BiuBiuBiu() {
 
     this.send_text = function (text) {
         if (!this.ws || this.ws.readyState == this.ws.CLOSED || this.ws.readyState == this.ws.CLOSING) {
-            console.log(this.ws);
-            this.init();
+            //console.log(this.ws);
+            this.listener();
         }
         if (this.ws.readyState == this.ws.OPEN) {
             console.log('[biu] Send: ' + text);
