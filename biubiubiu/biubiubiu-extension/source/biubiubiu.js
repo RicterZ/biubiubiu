@@ -8,20 +8,29 @@ function BiuBiuBiu() {
 
     this.init = function () {
         if (document.getElementById('biu_wrapper')) return;
+        this.create_wrapper();
+        this.listener();
+    };
 
+    this.get_wrapper = function() {
+        var biu_wrapper = document.getElementById('biu_wrapper');
+        if (!biu_wrapper) biu_wrapper = this.create_wrapper();
+        return $(biu_wrapper);
+    };
+
+    this.create_wrapper = function () {
         biu_wrapper = document.createElement('div');
         biu_wrapper.id = 'biu_wrapper';
         $('body').append(biu_wrapper);
-        this.biu_wrapper = $(biu_wrapper);
-        this.listener();
-    };
+        return biu_wrapper;
+    }
 
     this.biu = function (text) {
         biu_text = document.createElement('p');
         biu_text.className = 'biu_text';
         biu_text.style.top = this.get_random_top() + 'px';
         biu_text.innerText = text;
-        this.biu_wrapper.append(biu_text);
+        this.get_wrapper().append(biu_text);
     };
 
     this.get_random_top = function() {
