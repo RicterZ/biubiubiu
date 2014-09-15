@@ -14,31 +14,16 @@
 	position: absolute;
 	z-index: 999;
 	pointer-events: none;
-	right: 0;
     color: #FFF;
-    visibility: hidden;
     white-space:nowrap;
 
     font-size: 2.4em;
     text-shadow: 0px 0px 5px #000;
 
-    animation: biu 8s linear;
-    -moz-animation: biu 8s linear; /* Firefox */
-    -webkit-animation: biu 8s linear;  /* Safari 和 Chrome */
+    transition: all 8s linear;
+    -moz-transition: all 8s linear;
+    -webkit-transition: all 8s linear;
 
-}
-
-@keyframes biu {
-    from {right: 0;visibility: visible;}
-    to {right: 120%;}
-}
-
-@-moz-keyframes biu {
-    from {right: 0;visibility: visible;}
-    to {right: 120%;}
-}
-
-@-webkit-keyframes biu {
-    from {right: 0;visibility: visible;}
-    to {right: 120%;}
+    /*-moz-transform: translate(-500px, 0);
+    -webkit-transform: translate(-500px, 0);*/
 }

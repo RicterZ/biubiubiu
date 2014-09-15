@@ -28,9 +28,13 @@ function BiuBiuBiu() {
     this.biu = function (text) {
         biu_text = document.createElement('p');
         biu_text.className = 'biu_text';
-        biu_text.style.top = this.get_random_top() + 'px';
         biu_text.innerText = text;
+        biu_text.style.top = this.get_random_top() + 'px';
         this.get_wrapper().append(biu_text);
+        biu_text.style.right = '-' + biu_text.offsetWidth + 'px';
+
+        offset = document.body.clientWidth + biu_text.offsetWidth;
+        biu_text.style.cssText += 'transform: translate(' + -offset + 'px, 0);'
     };
 
     this.get_random_top = function() {
