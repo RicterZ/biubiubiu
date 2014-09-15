@@ -5,6 +5,7 @@
 function BiuBiuBiu() {
     this.id_url = window.location.host;
     this.url = 'ws://biu.ricter.me/biubiubiu';
+    this.time = 8;
 
     this.init = function () {
         if (document.getElementById('biu_wrapper')) return;
@@ -33,8 +34,11 @@ function BiuBiuBiu() {
         this.get_wrapper().append(biu_text);
         biu_text.style.right = '-' + biu_text.offsetWidth + 'px';
 
-        offset = document.body.clientWidth + biu_text.offsetWidth;
-        biu_text.style.cssText += 'transform: translate(' + -offset + 'px, 0);'
+        var offset = document.body.clientWidth + biu_text.offsetWidth + 10;
+        var time = document.body.clientWidth / (offset / this.time);
+
+        biu_text.style.cssText += 'transition: all ' + time + 's linear;';
+        biu_text.style.cssText += 'transform: translate(' + -offset + 'px, 0);';
     };
 
     this.get_random_top = function() {
