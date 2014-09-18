@@ -20,18 +20,18 @@ function BiuBiuBiu() {
     };
 
     this.create_wrapper = function () {
-        biu_wrapper = document.createElement('div');
+        var biu_wrapper = document.createElement('div');
         biu_wrapper.id = 'biu_wrapper';
         $('body').append(biu_wrapper);
         return biu_wrapper;
     }
 
     this.biu = function (text) {
-        biu_text = document.createElement('p');
+        var biu_text = document.createElement('p');
         biu_text.className = 'biu_text';
         biu_text.innerText = text;
-        biu_text.style.top = this.get_random_top() + 'px';
         this.get_wrapper().append(biu_text);
+        biu_text.style.top = this.get_random_top(biu_text.offsetHeight) + 'px';
         biu_text.style.right = '-' + biu_text.offsetWidth + 'px';
 
         var offset = document.body.clientWidth + biu_text.offsetWidth + 10;
@@ -41,8 +41,8 @@ function BiuBiuBiu() {
         biu_text.style.cssText += 'transform: translate(' + -offset + 'px, 0);';
     };
 
-    this.get_random_top = function() {
-        return Math.random() * ($(window).height() * 0.83);
+    this.get_random_top = function(height) {
+        return Math.floor(Math.random() * Math.floor($(window).height() / height - 1)) * height;
     };
 
     this.send_text = function (text) {
