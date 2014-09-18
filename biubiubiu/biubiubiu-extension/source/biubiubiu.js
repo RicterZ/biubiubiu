@@ -37,8 +37,7 @@ function BiuBiuBiu() {
         var offset = document.body.clientWidth + biu_text.offsetWidth + 10;
         var time = document.body.clientWidth / (offset / this.time);
 
-        biu_text.style.cssText += 'transition: all ' + time + 's linear;';
-        biu_text.style.cssText += 'transform: translate(' + -offset + 'px, 0);';
+        biu_text.style.cssText += '-webkit-animation: biu ' + time + 's linear;';
     };
 
     this.get_random_top = function(height) {
